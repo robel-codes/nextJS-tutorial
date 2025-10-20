@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default async function ProductReview({
     params,
@@ -7,7 +7,13 @@ export default async function ProductReview({
 }) {
     const { productId, reviewId } = await params;
     if (parseInt(reviewId) > 1000) {
-        notFound();
+        // notFound();
+        redirect(`/products`);
+        // diffrence between using redirect and router.push is that 
+        // redirect is used in server components while router.push is used in client components
+        // redirect is faster than router.push because it happens on the server side
+        // router.push causes a full page reload while redirect does not
+
     }
     return (
         <main>
